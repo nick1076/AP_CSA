@@ -4,6 +4,10 @@ public class Person{
     public String name = "";
     public String hairColor = "";
 
+    public Person(){
+        
+    }
+
     public Person(double h, int a, String n, String hC){
         height = h;
         age = a;

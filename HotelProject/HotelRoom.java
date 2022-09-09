@@ -1,15 +1,24 @@
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class HotelRoom{
     public Person guestOne = null;
     public Person guestTwo = null;
-    public List<Person> additionalGuests = new List<Person>();
+    public List<Person> additionalGuests = new ArrayList<Person>();
     public int roomNumber = 0;
-    public int roomCapacity = 0;
+    public int roomCapacity = 2;
 
     public enum roomTypeData {
         Normal,
         Elderly
     }
-    public roomTypeData roomType;
+    public roomTypeData roomType = roomTypeData.Normal;
+
+    public HotelRoom(int r){
+        roomNumber = r;
+    }
 
     public HotelRoom(int r, int rCapacity, roomTypeData rType){
         roomNumber = r;
@@ -19,8 +28,13 @@ public class HotelRoom{
 
     public Boolean checkIn(Person guest){
 
+        if (checkCapacity() == roomCapacity){
+            System.out.println("Room is full!");
+            return false;
+        }
+
         if (roomCapacity >2){
-            if (guest.age < 60 && roomType == roomTypeData.roomType.Elderly){
+            if (guest.age < 60 && roomType == roomTypeData.Elderly){
                 System.out.println("Guest is to young for the elderly suite!");
                 return false;
             }
@@ -36,28 +50,14 @@ public class HotelRoom{
                 return true;
             }
             else{
-                if (additionalGuests.size() < rCapacity){
-                    additionalGuests.Add(guest);
-                    System.out.println("Added guest to the additional room list!");
-                    return true;
-                }
-                else{
-                    System.out.println("Room is full!");
-                    return false;
-                }
+                additionalGuests.add(guest);
+                System.out.println("Added guest to the additional room list!");
+                return true;
             }
-
-            return false;
         }
 
-
-
         if (roomType == roomTypeData.Normal){
-            if (checkCapacity() == 2){
-                System.out.println("Room is full!");
-                return false;
-            }
-            else if (guestOne == null){
+            if (guestOne == null){
                 System.out.println("Added guest to slot 1!");
                 guestOne = guest;
                     return true;
@@ -86,15 +86,10 @@ public class HotelRoom{
                 }
             }
             else{
-                if (checkCapacity() == 2){
-                    System.out.println("Guest is not eligable for the elderly suite, and the room is full!");
-                    return false;
-                }
                 System.out.println("Guest is too young for the elderly suite!");
                 return false;
             }
         }
-
         return false;
     }
 
@@ -103,14 +98,14 @@ public class HotelRoom{
             System.out.println("Room is empty!");
             return false;
         }
-        else if (guestOne != null){
+        if (guestOne != null){
             if (guestOne == guest){
                 System.out.println("Removed guest from slot 1!");
                 guestOne = null;
                 return true;
             }
         }
-        else if (guestTwo != null){
+        if (guestTwo != null){
             if (guestTwo == guest){
                 System.out.println("Removed guest from slot 2!");
                 guestTwo = null;
@@ -118,6 +113,13 @@ public class HotelRoom{
             }
         }
 
+        for (int i = 0; i < additionalGuests.size(); i++){
+            if (additionalGuests.get(i) == guest){
+                additionalGuests.remove(guest);
+                System.out.println("Removed guest additional guest list!");
+                return true;
+            }
+        }
         return false;
     }
 
@@ -137,9 +139,6 @@ public class HotelRoom{
 
             return currentGuestCount;
         }
-
-
-
         if (guestOne != null && guestTwo != null){
             System.out.println("We have 2 guests in this room!");
             return 2;
