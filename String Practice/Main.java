@@ -12,12 +12,11 @@ public class Main {
 
             Scanner myScanner = new Scanner(myFile);
         
-            String line = myScanner.nextLine();
-		    System.out.println(line);
+            String line = "";
 			
 		    while(myScanner.hasNextLine()){
 			    line = myScanner.nextLine();
-			    System.out.println(line.charAt(0));
+			    System.out.println(line);
 		    }
 
         }
