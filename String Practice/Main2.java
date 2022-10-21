@@ -18,6 +18,7 @@ public class Main2 {
 		    while(myScanner.hasNextLine()){
                 String s = myScanner.nextLine();
                 index+=1;
+                
 		    }
 
             String[] things1 = new String[index / 2];
@@ -32,16 +33,26 @@ public class Main2 {
                 if (i % 2 == 0){
                     things1[i / 2] = currentLine;
                 }
-                else{
-                    things2[i / 2] = currentLine;
-                }
 		    }
 
-            //Arrays.sort(things);
+            Arrays.sort(things1);
 
             for (int x = 0; x < index / 2; x++){
-                System.out.println(things1[x]);
-                System.out.println(things2[x]);
+
+                Scanner latestScanner = new Scanner(myFile);
+                String newestLine = "";
+			
+                while(latestScanner.hasNextLine()){
+                    newestLine = latestScanner.nextLine();
+                    if (things1[x] == newestLine){
+                        things2[x] = latestScanner.nextLine();
+                        break;
+                    }
+                }
+            }
+
+            for (int z = 0; z < index / 2; z++){
+                System.out.println("Artist: " + things2[z] + " | Song: " + things1[z]);
             }
 
         }
