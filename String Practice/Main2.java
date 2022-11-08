@@ -23,6 +23,7 @@ public class Main2 {
 
             String[] things1 = new String[index / 2];
             String[] things2 = new String[index / 2];
+            String[] totalThings = new String[index];
 
             Scanner newScanner = new Scanner(myFile);
         
@@ -33,20 +34,15 @@ public class Main2 {
                 if (i % 2 == 0){
                     things1[i / 2] = currentLine;
                 }
+                totalThings[i] = currentLine;
 		    }
 
             Arrays.sort(things1);
 
-            for (int x = 0; x < index / 2; x++){
-
-                Scanner latestScanner = new Scanner(myFile);
-                String newestLine = "";
-			
-                while(latestScanner.hasNextLine()){
-                    newestLine = latestScanner.nextLine();
-                    if (things1[x] == newestLine){
-                        things2[x] = latestScanner.nextLine();
-                        break;
+            for (int x = 0; x < index; x++){
+                for (int e = 0; e < index / 2; e++){
+                    if (things1[e] == totalThings[x]){
+                        things2[e] = totalThings[x + 1];
                     }
                 }
             }
@@ -59,7 +55,5 @@ public class Main2 {
         catch(Exception e){
             
         }
-
     }
-
 }
