@@ -1,4 +1,3 @@
-package MinesweeperProject;
 
 import java.util.Random;
 
@@ -17,7 +16,7 @@ public class game{
 
     public Random rand = new Random(seed);
 
-    public static void main(String[] args){
-        grid g = new grid(this.game, totalBombCount, xScale, yScale, rand);
+    public void Begin(){
+        grid g = new grid(this);
     }
 }

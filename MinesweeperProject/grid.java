@@ -1,4 +1,3 @@
-package MinesweeperProject;
 
 import java.util.Random;
 
@@ -8,18 +7,18 @@ public class grid{
     private int xScale;
     private int yScale;
 
-    public grid(game g, int b, int x, int y, Random r){
+    public grid(game g){
         main = g;
-        xScale = x;
-        yScale = y;
+        xScale = main.xScale;
+        yScale = main.yScale;
 
         tiles = new tile[xScale][yScale];
         int cBombs = 0;
 
         for (int xV = 0; xV < xScale; xV++){
             for (int yV = 0; yV < yScale; yV++){
-                if (cBombs < b){
-                    int outcome = r.nextInt(2);
+                if (cBombs < main.totalBombCount){
+                    int outcome = main.rand.nextInt(2);
 
                     if (outcome == 0){
                         tiles[xV][yV] = new tile(false);
@@ -33,9 +32,32 @@ public class grid{
                 }
             }
         }
+
+        Display();
     }
 
     public void Display(){
+        String xTop = "";
+        for (int x = 0; x < xScale; x++){
+            xTop += "   " + x;
+        }
+        println(xTop);
 
+        for (int y = 0; y < yScale; y++){
+            String finalForRow = "" + y;
+            for (int x = 0; x < xScale; x++){
+                finalForRow += tiles[x][y].getTileChar(main);
+            }
+            println(finalForRow);
+            println("");
+        }
+    }
+
+    public void print(String p){
+        System.out.print(p);
+    }
+
+    public void println(String p){
+        System.out.println(p);
     }
 }

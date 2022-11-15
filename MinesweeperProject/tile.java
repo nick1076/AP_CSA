@@ -1,4 +1,3 @@
-package MinesweeperProject;
 
 public class tile {
 
@@ -15,6 +14,11 @@ public class tile {
 
     public boolean getFlagged(){
         return flagged;
+    }
+
+    public char getTileChar(game g){
+        //Add logic to return different chars dependent on what the tile is!
+        return g.charNormal;
     }
 
     public void setBomb(boolean nBomb){
