@@ -37,16 +37,18 @@ public class grid{
     }
 
     public void Display(){
-        String xTop = "";
+        String xTop = " ";
+        println("");
         for (int x = 0; x < xScale; x++){
             xTop += "   " + x;
         }
         println(xTop);
+        println("");
 
         for (int y = 0; y < yScale; y++){
             String finalForRow = "" + y;
-            for (int x = 0; x < xScale; x++){
-                finalForRow += tiles[x][y].getTileChar(main);
+            for (int x = 0; x < xScale; x++){ 
+                finalForRow += "   " +  tiles[x][y].getTileChar(main);
             }
             println(finalForRow);
             println("");

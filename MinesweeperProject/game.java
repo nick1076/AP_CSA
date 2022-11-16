@@ -5,8 +5,8 @@ public class game{
 
     public char charFlag = '⚐';
     public char charBomb = 'ⴲ';
-    public char charNormal = ' ';
-    public char charUncovered = ' ';
+    public char charNormal = '□';
+    public char charUncovered = '□';
 
     public int seed = 1;
     public int xScale = 5;
