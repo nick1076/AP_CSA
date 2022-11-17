@@ -18,6 +18,9 @@ public class tile {
 
     public char getTileChar(game g){
         //Add logic to return different chars dependent on what the tile is!
+        if (bomb){
+            return g.charBomb;
+        }
         return g.charNormal;
     }
 

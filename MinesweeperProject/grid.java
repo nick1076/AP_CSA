@@ -25,6 +25,7 @@ public class grid{
                     }
                     else{
                         tiles[xV][yV] = new tile(true);
+                        cBombs += 1;
                     }
                 }
                 else{

@@ -10,7 +10,7 @@ public class game{
 
     public int seed = 1;
     public int xScale = 5;
-    public int yScale = 5;
+    public int yScale = 15;
 
     public int totalBombCount = 5;
 
