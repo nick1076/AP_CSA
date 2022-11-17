@@ -10,9 +10,12 @@ public class game{
 
     public int seed = 1;
     public int xScale = 5;
-    public int yScale = 15;
+    public int yScale = 5;
 
     public int totalBombCount = 5;
+
+    //Enabled to show all hidden bombs for testing
+    public boolean displayBombs = true;
 
     public Random rand = new Random(seed);
 
