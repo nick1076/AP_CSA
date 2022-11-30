@@ -21,15 +21,15 @@ public class grid{
                     int outcome = main.rand.nextInt(2);
 
                     if (outcome == 0){
-                        tiles[xV][yV] = new tile(false);
+                        tiles[xV][yV] = new tile(false, xV, yV);
                     }
                     else{
-                        tiles[xV][yV] = new tile(true);
+                        tiles[xV][yV] = new tile(true, xV, yV);
                         cBombs += 1;
                     }
                 }
                 else{
-                    tiles[xV][yV] = new tile(false);
+                    tiles[xV][yV] = new tile(false, xV, yV);
                 }
             }
         }
@@ -49,10 +49,22 @@ public class grid{
         for (int y = 0; y < yScale; y++){
             String finalForRow = "" + y;
             for (int x = 0; x < xScale; x++){ 
-                finalForRow += "   " +  tiles[x][y].getTileChar(main);
+                finalForRow += "   " +  tiles[x][y].getTileChar(main, tiles);
             }
             println(finalForRow);
             println("");
+        }
+    }
+
+    public void uncoverSpot(int x, int y, boolean flag){
+        if (tiles[x][y].uncover(flag) == -1 && !flag){
+            Display();
+            println("You dug up a bomb and lost!");
+            println("");
+            main.onLose();
+        }
+        else{
+            Display();
         }
     }
 
@@ -62,5 +74,10 @@ public class grid{
 
     public void println(String p){
         System.out.println(p);
+    }
+
+    public void ClearConsole(){
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();  
     }
 }
