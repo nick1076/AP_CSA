@@ -8,10 +8,13 @@ public class tile {
     private int xCoord = 0;
     private int yCoord = 0;
 
-    public tile(boolean b, int x, int y){
+    private grid gr;
+
+    public tile(boolean b, int x, int y, grid g){
         bomb = b;
         xCoord = x;
         yCoord = y;
+        gr = g;
     }
 
     public boolean getBomb(){
@@ -23,7 +26,32 @@ public class tile {
     }
 
     public int uncover(boolean flag){
-        uncovered = true;
+        if (flag && flagged){
+            if (bomb){
+                gr.GetGame().uncoveredBombs -= 1;
+            }
+            flagged = false;
+            return 1;
+        }
+
+        if (flagged && !flag){
+            return 0;
+        }
+
+        if (!flag){
+            uncovered = true;
+        }
+
+        if (flag && !flagged && bomb){
+            gr.GetGame().uncoveredBombs += 1;
+            //gr.print(String.valueOf(gr.GetGame().uncoveredBombs));
+
+            if (gr.GetGame().uncoveredBombs == gr.GetGame().totalBombCount){
+                //Player wins!
+                gr.GetGame().onWin();
+            }
+        }
+
         flagged = flag;
 
         if (bomb && !flag){
@@ -73,15 +101,15 @@ public class tile {
         if (xCoord == 0){
             bordersXleft = true;
         }
-        if (xCoord == g.xScale){
+        if (xCoord == g.xScale - 1){
             bordersXright = true;
         }
 
         if (yCoord == 0){
-            bordersYbelow = true;
-        }
-        if (yCoord == g.xScale){
             bordersYabove = true;
+        }
+        if (yCoord == g.yScale - 1){
+            bordersYbelow = true;
         }
 
         //Top Left
@@ -93,7 +121,7 @@ public class tile {
                 nearbyBombs += 1;
             }
             else{
-                t.CalculateNearbyBombs(g, board);
+                //t.CalculateNearbyBombs(g, board);
             }
         }
 
@@ -106,11 +134,10 @@ public class tile {
                 nearbyBombs += 1;
             }
             else{
-                t.CalculateNearbyBombs(g, board);
+                //t.CalculateNearbyBombs(g, board);
             }
         }
 
-        /* 
         //Top Right
         if (!bordersYabove && !bordersXright){
             //Check if this tile is a bomb. If so, add to current bombs. If not, also calculate it's nearby bombs and reveal it.
@@ -120,7 +147,7 @@ public class tile {
                 nearbyBombs += 1;
             }
             else{
-                t.CalculateNearbyBombs(g, board);
+                //t.CalculateNearbyBombs(g, board);
             }
         }
 
@@ -133,7 +160,7 @@ public class tile {
                 nearbyBombs += 1;
             }
             else{
-                t.CalculateNearbyBombs(g, board);
+                //t.CalculateNearbyBombs(g, board);
             }
         }
 
@@ -146,7 +173,7 @@ public class tile {
                 nearbyBombs += 1;
             }
             else{
-                t.CalculateNearbyBombs(g, board);
+                //t.CalculateNearbyBombs(g, board);
             }
         }
 
@@ -159,7 +186,7 @@ public class tile {
                 nearbyBombs += 1;
             }
             else{
-                t.CalculateNearbyBombs(g, board);
+                //t.CalculateNearbyBombs(g, board);
             }
         }
 
@@ -172,7 +199,7 @@ public class tile {
                 nearbyBombs += 1;
             }
             else{
-                t.CalculateNearbyBombs(g, board);
+                //t.CalculateNearbyBombs(g, board);
             }
         }
 
@@ -185,9 +212,9 @@ public class tile {
                 nearbyBombs += 1;
             }
             else{
-                t.CalculateNearbyBombs(g, board);
+                //t.CalculateNearbyBombs(g, board);
             }
-        } */
+        } 
         
         if (nearbyBombs == 0){
             finalC = '0';

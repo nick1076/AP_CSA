@@ -7,6 +7,10 @@ public class grid{
     private int xScale;
     private int yScale;
 
+    public game GetGame(){
+        return main;
+    }
+
     public grid(game g){
         main = g;
         xScale = main.xScale;
@@ -21,15 +25,15 @@ public class grid{
                     int outcome = main.rand.nextInt(2);
 
                     if (outcome == 0){
-                        tiles[xV][yV] = new tile(false, xV, yV);
+                        tiles[xV][yV] = new tile(false, xV, yV, this);
                     }
                     else{
-                        tiles[xV][yV] = new tile(true, xV, yV);
+                        tiles[xV][yV] = new tile(true, xV, yV, this);
                         cBombs += 1;
                     }
                 }
                 else{
-                    tiles[xV][yV] = new tile(false, xV, yV);
+                    tiles[xV][yV] = new tile(false, xV, yV, this);
                 }
             }
         }
@@ -52,6 +56,11 @@ public class grid{
                 finalForRow += "   " +  tiles[x][y].getTileChar(main, tiles);
             }
             println(finalForRow);
+            println("");
+        }
+
+        if (main.win){
+            println("You flagged all of the bombs! You win");
             println("");
         }
     }

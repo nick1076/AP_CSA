@@ -17,10 +17,12 @@ public class game{
     public int yScale = 5;
 
     public int totalBombCount = 5;
+    public int uncoveredBombs = 0;
 
     //Enabled to show all hidden bombs for testing
     public boolean displayBombs = true;
     public boolean lost = false;
+    public boolean win = false;
 
     public grid g;
 
@@ -30,7 +32,7 @@ public class game{
         g = new grid(this);
         
         //Credit for the scanner code below: https://www.geeksforgeeks.org/ways-to-read-input-from-console-in-java/
-        while (!lost){
+        while (!lost && !win){
             Scanner in = new Scanner(System.in);
      
             String s = in.nextLine();
@@ -42,13 +44,17 @@ public class game{
         lost = true;
     }
 
+    public void onWin(){
+        win = true;
+    }
+
     public void takeInput(String s){
         g.ClearConsole();
         if (s == "end"){
             lost = true;
         }
 
-        if (lost){
+        if (lost || win){
             return;
         }
 
