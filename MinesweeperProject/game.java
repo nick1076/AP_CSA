@@ -20,7 +20,7 @@ public class game{
     public int uncoveredBombs = 0;
 
     //Enabled to show all hidden bombs for testing
-    public boolean displayBombs = true;
+    public boolean displayBombs = false;
     public boolean lost = false;
     public boolean win = false;
 
