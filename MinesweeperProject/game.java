@@ -1,4 +1,5 @@
 
+//Import packages
 import java.util.Random;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,16 +8,23 @@ import java.util.Scanner;
 
 public class game{
 
+    //Declare visuals for game
     public char charFlag = '⚐';
     public char charBomb = 'ⴲ';
     public char charNormal = '□';
     public char charUncovered = '□';
 
+    //Bomb generation seed
     public int seed = 1;
+
+    //Board scaling
     public int xScale = 5;
     public int yScale = 5;
 
+    //Difficulty (Bombs in map)
     public int totalBombCount = 5;
+
+    //Data
     public int uncoveredBombs = 0;
 
     //Enabled to show all hidden bombs for testing
@@ -24,8 +32,10 @@ public class game{
     public boolean lost = false;
     public boolean win = false;
 
+    //Grid object
     public grid g;
 
+    //Create a random which uses our seed
     public Random rand = new Random(seed);
 
     public void Begin(){
@@ -40,14 +50,17 @@ public class game{
         }
     }
 
+    //Called when player loses
     public void onLose(){
         lost = true;
     }
 
+    //Called when player wins
     public void onWin(){
         win = true;
     }
 
+    //Processes user input
     public void takeInput(String s){
         g.ClearConsole();
         if (s == "end"){
