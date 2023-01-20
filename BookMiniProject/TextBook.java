@@ -1,11 +1,10 @@
 public class TextBook extends Book {
-    public TextBook(string csvLine){
+    public TextBook(String[] data){
         super();
-    }
-
-    public override printInfo(){
-        Book.printInfo();
-        System.out.print(Subject);
-        System.out.print(Edition);
+        Title = data[0];
+        Genre = data[1];
+        Author = data[2];
+        Subject = data[3];
+        Edition = Integer.valueOf(data[4]);
     }
 }

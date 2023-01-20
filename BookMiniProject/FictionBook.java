@@ -1,10 +1,9 @@
 public class FictionBook extends Book {
-    public FictionBook(string csvLine){
+    public FictionBook(String[] data){
         super();
-    }
-
-    public override printInfo(){
-        Book.printInfo();
-        System.out.print(Edition);
+        Title = data[0];
+        Genre = data[1];
+        Author = data[2];
+        Edition = Integer.valueOf(data[4]);
     }
 }

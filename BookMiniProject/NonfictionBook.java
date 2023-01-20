@@ -1,11 +1,9 @@
 public class NonfictionBook extends Book {
-    public NonfictionBook(string csvLine){
+    public NonfictionBook(String[] data){
         super();
-    }
-
-    public override printInfo(){
-        Book.printInfo();
-        System.out.print(Subject);
-        System.out.print(Genre);
+        Title = data[0];
+        Genre = data[1];
+        Author = data[2];
+        Edition = Integer.valueOf(data[3]);
     }
 }

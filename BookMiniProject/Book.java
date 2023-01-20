@@ -1,40 +1,50 @@
-public abstract class Book(){
+public abstract class Book{
     public String Title = "";
     public String Genre = "";
     public String Author = "";
     public String Subject = "";
     public int Edition = 0;
 
-    public Book(String csvLine){
-        //Process CSV Info Here
-        String[] data = csvLine.split(',');
-        for (int i = 0; i < data.length; i++){
-            if (i == 0){
-                //Title
-                Title = data[i];
-            }
-            else if (i == 1){
-                //Genre
-                Genre = data[i];
-            }
-            else if (i == 2){
-                //Author
-                Author = data[i];
-            }
-            else if (i == 3){
-                //Subject
-                Subject = data[i];
-            }
-            else if (i == 4){
-                //Edition
-                Edition = Integer.parse(data[i]);
-            }
-        }
-    }
+    public void printInfo(){
+        System.out.print(" ");
 
-    public abstract void printInfo(){
-        System.out.print(Title);
-        System.out.print(Author);
-        System.out.print(Genre);
+        if (Title == ""){
+            System.out.print("n/a");
+            System.out.print(" | ");
+        }
+        else{
+            System.out.print(Title);
+            System.out.print(" | ");
+        }
+
+        if (Genre == ""){
+            System.out.print("n/a");
+            System.out.print(" | ");
+        }
+        else{
+            System.out.print(Genre);
+            System.out.print(" | ");
+        }
+
+        if (Author == ""){
+            System.out.print("n/a");
+            System.out.print(" | ");
+        }
+        else{
+            System.out.print(Author);
+            System.out.print(" | ");
+        }
+
+        if (Subject == ""){
+            System.out.print("n/a");
+            System.out.print(" | ");
+        }
+        else{
+            System.out.print(Subject);
+            System.out.print(" | ");
+        }
+
+        System.out.print(Edition);
+        System.out.print(" ");
     }
 }
