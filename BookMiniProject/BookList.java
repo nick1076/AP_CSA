@@ -41,17 +41,24 @@ public class BookList {
             }
         }
 
-        if (g == "Fiction"){
-            FictionBook fBook = new FictionBook(data);
-            books.add(fBook);
+        if (data[1] == "Fiction"){
+            System.out.println("SF");
+            //FictionBook fBook = new FictionBook(data);
+            //books.add(fBook);
         }
         else if (g == "Nonfiction"){
-            NonfictionBook nfBook = new NonfictionBook(data);
-            books.add(nfBook);
+            System.out.println("SF");
+            //NonfictionBook nfBook = new NonfictionBook(data);
+            //books.add(nfBook);
         }
         else if (g == "Textbook"){
-            TextBook tBook = new TextBook(data);
-            books.add(tBook);
+            System.out.println("SF");
+            //TextBook tBook = new TextBook(data);
+            //books.add(tBook);
+        }
+        String[] arrOfStr = csvLine.split(",", 0);
+        if (arrOfStr[1]=="Fiction"){
+            System.out.println(1);
         }
 
         //Look at data and determine what type of book object should be made
@@ -68,9 +75,9 @@ public class BookList {
 
     public void printTable(){
         //Print out each book's info
-        System.out.println("|________________________________________________|");
-        System.out.println("|Title | Genre | Author | Subject | Edition | QTY|");
-        System.out.println("|------------------------------------------------|");
+        System.out.println("|--------------------------------------------------|");
+        System.out.println("| Title | Genre | Author | Subject | Edition | QTY |");
+        System.out.println("|--------------------------------------------------|");
 
         for (int i = 0; i < books.size(); i++)
         {
@@ -79,6 +86,6 @@ public class BookList {
             System.out.println("|");
         }
 
-        System.out.println("|------------------------------------------------|");
+        System.out.println("|--------------------------------------------------|");
     }
 }
