@@ -5,7 +5,7 @@ import java.io.*;
 
 public class main{
     public static void main(String[] args){
-
+        
         BookList books = new BookList();
 
         try{
@@ -23,7 +23,8 @@ public class main{
                 }
                 lineCount++;
             }
-    
+            
+            //books.sortList("Author");
             books.printTable();
         }
         catch (Exception e){

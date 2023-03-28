@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class BookList {
 
@@ -16,6 +18,7 @@ public class BookList {
         String a = "";
         String s = "";
         Integer e = 0;
+        System.out.println(csvLine);
 
         String[] data = csvLine.split(",");
         for (int i = 0; i < data.length; i++){
@@ -71,6 +74,67 @@ public class BookList {
 
     public void sortList(String sorting_method){
         //Sort via sorting_method
+        ArrayList<String> sortedStrings = new ArrayList<String>();
+        if (sorting_method == "Author"){
+            for (int i = 0; i < books.size(); i++){
+                sortedStrings.add(books.get(i).Author);
+            }
+
+            Collections.sort(sortedStrings, Collections.reverseOrder());
+
+            ArrayList<Book> sortedBooks = new ArrayList<Book>();
+
+            for (int i = 0; i < sortedStrings.size(); i++){
+                for (int x = 0; x < books.size(); x++){
+                    if (books.get(x).Author == sortedStrings.get(i)){
+                        sortedBooks.add(books.get(x));
+                        break;
+                    }
+                }
+            }
+
+            books = sortedBooks;
+        }
+        else if (sorting_method == "Subject"){
+            for (int i = 0; i < books.size(); i++){
+                sortedStrings.add(books.get(i).Subject);
+            }
+
+            Collections.sort(sortedStrings, Collections.reverseOrder());
+
+            ArrayList<Book> sortedBooks = new ArrayList<Book>();
+
+            for (int i = 0; i < sortedStrings.size(); i++){
+                for (int x = 0; x < books.size(); x++){
+                    if (books.get(x).Subject == sortedStrings.get(i)){
+                        sortedBooks.add(books.get(x));
+                        break;
+                    }
+                }
+            }
+
+            books = sortedBooks;
+        }
+        else if (sorting_method == "Genre"){
+            for (int i = 0; i < books.size(); i++){
+                sortedStrings.add(books.get(i).Genre);
+            }
+
+            Collections.sort(sortedStrings, Collections.reverseOrder());
+
+            ArrayList<Book> sortedBooks = new ArrayList<Book>();
+
+            for (int i = 0; i < sortedStrings.size(); i++){
+                for (int x = 0; x < books.size(); x++){
+                    if (books.get(x).Genre == sortedStrings.get(i)){
+                        sortedBooks.add(books.get(x));
+                        break;
+                    }
+                }
+            }
+
+            books = sortedBooks;
+        }
     }
 
     public void printTable(){
