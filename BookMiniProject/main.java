@@ -24,7 +24,7 @@ public class main{
                 lineCount++;
             }
             
-            //books.sortList("Author");
+            books.sortList("Author");
             books.printTable();
         }
         catch (Exception e){

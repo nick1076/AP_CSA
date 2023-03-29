@@ -4,7 +4,7 @@ public class NonfictionBook extends Book {
         Title = data[0];
         Genre = data[1];
         Author = data[2];
-        Edition = Integer.valueOf(data[3]);
+        Edition = Integer.valueOf(data[4]);
     }
 
     public void printInfo(){

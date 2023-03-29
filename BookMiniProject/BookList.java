@@ -1,3 +1,4 @@
+import java.awt.print.Book;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -18,7 +19,6 @@ public class BookList {
         String a = "";
         String s = "";
         Integer e = 0;
-        System.out.println(csvLine);
 
         String[] data = csvLine.split(",");
         for (int i = 0; i < data.length; i++){
@@ -44,27 +44,19 @@ public class BookList {
             }
         }
 
-        if (data[1] == "Fiction"){
-            System.out.println("SF");
-            //FictionBook fBook = new FictionBook(data);
-            //books.add(fBook);
+        if (data[1].equals("Fiction")){
+            FictionBook fBook = new FictionBook(data);
+            books.add(fBook);
         }
-        else if (g == "Nonfiction"){
-            System.out.println("SF");
-            //NonfictionBook nfBook = new NonfictionBook(data);
-            //books.add(nfBook);
+        else if (data[1].equals("Nonfiction")){
+            System.out.println(csvLine);
+            NonfictionBook nfBook = new NonfictionBook(data);
+            books.add(nfBook);
         }
-        else if (g == "Textbook"){
-            System.out.println("SF");
-            //TextBook tBook = new TextBook(data);
-            //books.add(tBook);
+        else if (data[1].equals("Textbook")){
+            TextBook tBook = new TextBook(data);
+            books.add(tBook);
         }
-        String[] arrOfStr = csvLine.split(",", 0);
-        if (arrOfStr[1]=="Fiction"){
-            System.out.println(1);
-        }
-
-        //Look at data and determine what type of book object should be made
     }
 
     public void removeFromList(Book book){
@@ -80,19 +72,20 @@ public class BookList {
                 sortedStrings.add(books.get(i).Author);
             }
 
-            Collections.sort(sortedStrings, Collections.reverseOrder());
+            Collections.sort(sortedStrings);
 
             ArrayList<Book> sortedBooks = new ArrayList<Book>();
 
             for (int i = 0; i < sortedStrings.size(); i++){
                 for (int x = 0; x < books.size(); x++){
-                    if (books.get(x).Author == sortedStrings.get(i)){
+                    if (books.get(x).Author.equals(sortedStrings.get(i))){
                         sortedBooks.add(books.get(x));
                         break;
                     }
                 }
             }
 
+            books.clear();
             books = sortedBooks;
         }
         else if (sorting_method == "Subject"){
